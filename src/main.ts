@@ -1,29 +1,25 @@
-import { setupCounter } from './counter'
+import { App } from "./app";
 
-function main() {
-  
+async function main() {
+	  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    
+	  const app = new App(canvas);
+    app.start();
+
+    // expose to window for debugging
+    
+    //@ts-ignore
+    window.app = app;    
+    //@ts-ignore
+    window.window = window;
+
+    function loop() {
+      app.update();
+      app.draw();
+      requestAnimationFrame(loop)
+    }
+
+    loop()
 }
 
-
-// lalal on load run this 
-main()
-
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="/typescript.svg" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+window.addEventListener("load", main, false);

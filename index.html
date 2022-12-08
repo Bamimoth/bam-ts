@@ -1,14 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css"/>
-    <title>Bami</title>
-  </head>
-  <body>
-    <div id="app"></div>
+<html>
+	<head>
+		<title>Its Bami Time</title>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+		<style>
+			@font-face{
+				font-family:'zorque';
+				src: url('../resources/fonts/zorque.ttf');
+			}
+
+			body {
+				background-color: #000000;
+				padding: 0px;
+				margin: 0px;
+			}
+
+			.unselectable {
+				-webkit-user-select: none; 
+				-moz-user-select: none; 
+				-ms-user-select: none;  
+				user-select: none;    
+			}
+
+      #view-window {
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #canvas {
+        position: absolute;
+        width: 100%;
+				height: 100%;
+      }
+
+      #loading-screen {
+        /* yes, this is how you center a div! */
+        display: flex;
+        justify-content: center;
+        /* align-items: center; */
+      }
+
+			#loading_bg {
+				position: absolute;
+				background: #0a1d4d;
+				width: 100%;
+				height: 100%;
+			}
+
+			#loading_img {
+				position: absolute;
+        top: 40%;
+				animation: spin 3s cubic-bezier(0.175, 0.885, 0.32, 1.0) infinite;
+			}
+
+			#loading_text {
+				position: absolute;
+				top: calc(40% + 210px);
+				font-family: sans-serif;
+				color: rgb(105, 172, 206);
+			}
+
+			@keyframes spin { 
+				100% { 
+					-webkit-transform: rotate(360deg); 
+					transform:rotate(360deg); 
+				} 
+			}
+
+			.hidden {
+				visibility: hidden;
+				opacity: 0;
+				transition: visibility 0s 0.5s, opacity 0.5s linear;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="view-window" width="1920" height="1080">
+			<canvas id="canvas" width="1920" height="1080">
+        <!-- The Game! -->
+      </canvas>
+			
+      <div id="loading-screen">
+        <div id="loading_bg"></div>
+        <img src="/branding/bamimoth.png" id="loading_img" alt="" width="200px">
+        <p id="loading_text">Loading...</p>
+      </div>
+		</div>
     <script type="module" src="/src/main.ts"></script>
-  </body>
+	</body>
 </html>
