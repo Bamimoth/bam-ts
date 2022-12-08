@@ -1,4 +1,4 @@
-import { sleep } from "./engine/util/util";
+import { Util } from "./engine/util/util";
 
 export class App {
 
@@ -10,7 +10,7 @@ export class App {
   async start() {
     
     // simulate loading behaviour
-    await sleep(1000);
+    await Util.sleep(1000);
     const loadingScreen = document.getElementById("loading-screen") as HTMLDivElement;
     loadingScreen.classList.add("hidden");
   }
