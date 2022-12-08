@@ -3,7 +3,7 @@
 
 import { f32 } from "./math";
 
-class Vec3 {
+export class Vec3 {
 	constructor(
         public x = 0.0, 
         public y = 0.0, 
